@@ -98,27 +98,11 @@ void printStats(L1Cache L1){
 	for (int i = 0; i < L1.numsets; i++) {
 		printf("set %d:", i);
 
-		for (int k = 0; k < L1.assoc; k++) {
-			int column=0;
-			if(L1.repl_policy==0){
-				column = L1.LRU[i][k];
-			}else{
-				// Start at the root of the tree
-				int index = 0;
-
-				// Traverse the PLRU tree to find the least recently used block
-				while (index < L1.lru_tree.size()) {
-					index = 2 * index + 1 + L1.lru_tree[index];
-				}
-
-				// Calculate the corresponding column for the leaf node
-				column = index - L1.lru_tree.size();
-			}
-			
+		for (int k = 0; k < L1.assoc; k++) {			
 
 			// Display tag and dirty status
-			char dirtychar = L1.block[i][column].isDirty ? 'D' : 'N';
-			printf(" %x %c ||", L1.block[i][column].tag, dirtychar);
+			char dirtychar = L1.block[i][k].isDirty ? 'D' : 'N';
+			printf(" %x %c ||", L1.block[i][k].fulladdress, dirtychar);
 		}
 
 		printf("\n");

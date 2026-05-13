@@ -15,13 +15,13 @@ g++ main.cpp src/Block.cpp src/L1Cache.cpp -Iinc -o cache_simulator.exe
 Run the simulator with the following command-line arguments:
 
 ```bash
-./cache_simulator.exe <cache_size> <memory_size> <associativity> <block_size> <trace_file>
+./cache_simulator.exe <block_size> <Cache_Size> <associativity> <Replacement_Policy> <trace_file>
 ```
 
 ### Example
 
 ```bash
-./cache_simulator.exe 64 640 2 1 tracefile_blender.txt
+./cache_simulator.exe 64 2048 4 1 tracefile_blender.txt
 ```
 
 ## Trace files
